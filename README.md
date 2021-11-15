@@ -1,5 +1,27 @@
 # web-vr
 
+base 组件
+
+// 全景组件
+krpano 
+// 轮播组件
+swiper
+// 双向轮播
+two-way-swiper
+<app>
+    <audio></audio>
+    <page>
+        <module>
+            <krpano>
+                <menu></menu>
+                <sceond-menu></menu>
+            </krpano>
+        </module>
+    </page>
+    <menu></menu>
+</app>
+
+
 ## Project setup
 ```
 yarn install

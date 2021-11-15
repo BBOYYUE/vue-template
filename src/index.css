@@ -1,0 +1,68 @@
+/* @tailwind base; */
+/* @tailwind components; */
+/* @tailwind utilities; */
+/* @import "tailwindcss/base"; */
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+body{
+    box-sizing:border-box;
+    padding:0;
+    margin: 0;
+}
+/* 
+.bg-bluegray-100{
+    background-color: #f1f5f9;
+}
+.bg-bluegray-50{
+    background-color: #f8fafc;
+}
+.-z-10{
+    z-index: -10;
+}
+.-z-997{
+    z-index: -997;
+}
+.-z-998{
+    z-index: -998;
+}
+
+.dg.main{
+    position:fixed;
+    bottom:10rem;
+    right: 0;
+}
+img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.app > div{
+    max-width: 100%;
+    max-height: 100%;
+}
+.fixed-box > div{
+    position: fixed;
+}
+.absolute-box > div{
+    position: absolute;
+}
+.transparent-box > div{
+    opacity:.5;
+}
+.background-box > div{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    z-index: -10;
+}
+.center-box > div {
+    height: 100%;
+    margin: 0 auto;
+}
+.background-box > div > img{
+    width: 100vw;
+    height: 100vh;
+} */

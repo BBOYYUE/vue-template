@@ -1,0 +1,71 @@
+﻿<krpano version="1.20.9" title="Virtual Tour" debugmode="true" debugkeys="true" debugjsactions="true" debugjsplugins="true">
+	<include url="skin/vtourskin.xml" />
+
+	<!-- customize skin settings: maps, gyro, webvr, thumbnails, tooltips, layout, design, ... -->
+
+	<!--
+	    For an alternative skin design either change the <skin_settings> values 
+	    from above or optionally include one of the predefined designs from below.
+	-->
+	<!-- <include url="skin/vtourskin_design_flat_light.xml"  /> -->
+	<!-- <include url="skin/vtourskin_design_glass.xml"       /> -->
+	<!-- <include url="skin/vtourskin_design_ultra_light.xml" /> -->
+	<!-- <include url="skin/vtourskin_design_117.xml"         /> -->
+	<!-- <include url="skin/vtourskin_design_117round.xml"    /> -->
+	<!-- <include url="skin/vtourskin_design_black.xml"       /> -->
+
+
+	<!-- startup action - load the first scene -->
+	<action name="startup" autorun="onstart">
+		if(startscene === null OR !scene[get(startscene)], copy(startscene,scene[0].name); );
+		loadscene(get(startscene), null, MERGE);
+		if(startactions !== null, startactions() );
+	</action>
+	<include url="skin/vtourskin_design_alpha.xml" />
+	<!-- <include url="./test.xml" /> -->
+	<include name="panoScene" url="%$panoXmlPath%" />
+	<!-- <include url="plugins/edit_hotspot.xml" /> -->
+	<!-- <action name="draghotspotSM">
+		spheretoscreen(ath, atv, hotspotcenterx, hotspotcentery, 'l'); 
+		sub(drag_adjustx, mouse.stagex, hotspotcenterx); 
+		sub(drag_adjusty, mouse.stagey, hotspotcentery); 
+		asyncloop(pressed, sub(dx, mouse.stagex, drag_adjustx); 
+		sub(dy, mouse.stagey,drag_adjusty); 
+		screentosphere(dx, dy, ath, atv); 
+		set(name_Hotspot_San, calc('' + name + '')); 
+		roundval(ath,2); 
+		roundval(atv,2); 
+		roundval(rx,2); 
+		roundval(ry,2); 
+		roundval(rz,2); 
+		roundval(ox,2); 
+		roundval(oy,2); 
+		roundval(tz,2); 
+		roundval(rotate,2);
+		roundval(scale,3); 
+		roundval(alpha,2); 
+		if(width != prop,esli_ne_propSMHotspot(width,2,0);, esli_propSMHotspot(width,2););
+		if(height != prop,esli_ne_propSMHotspot(height,3,0);, esli_propSMHotspot(height,3);); 
+		roundval(depth);
+		set(layer[tit_ath].html,get(ath));
+		set(layer[tit_atv].html, get(atv));
+		set(layer[tit_rx].html, get(rx)); 
+		set(layer[tit_ry].html, get(ry)); 
+		set(layer[tit_rz].html, get(rz)); 
+		set(layer[tit_ox].html, get(ox)); 
+		set(layer[tit_oy].html, get(oy)); 
+		set(layer[tit_tz].html, get(tz));
+		set(layer[tit_rotateS].html, get(rotate));
+		set(layer[tit_s].html, get(scale)); 
+		set(layer[tit_alphaS].html, get(alpha)); 
+		set(layer[tit_widthS].html, get(width)); 
+		set(layer[tit_heightS].html, get(height)); 
+		set(layer[tit_depth].html, get(depth)); );
+		txtadd(nameH,&#8220;,get(name_Hotspot_San),&#8221;); 
+		set(layer[name_Hotspot].html, get(nameH)); 
+		trace('name="',name_Hotspot_San,'" scale="',scale,'" width="',width,'" height="',height,'" alpha="',alpha,'" rotate="',rotate, '" depth="',depth, '"
+		ath="',ath,'" atv="',atv,'" rx="',rx,'" ry="',ry,'" rz="',rz,'" ox="',ox,'" oy="',oy,'"'); </action>
+	<action name="esli_ne_propSMHotspot"> roundval(%1); set(layer[edit_hotspot%2].ondown, set(bgcolor,0x808c98);
+		izmena_parametrSM(hotspot,get(name_Hotspot_San),0,%1 ,100,tit_%1S,0,10000); set(nagata,1);); </action>
+	<action name="esli_propSMHotspot"> set(layer[edit_hotspot%2].ondown, set(bgcolor,0x808c98); set(nagata,1);); </action> -->
+</krpano>
