@@ -23,7 +23,7 @@
 	</action>
 	<include url="skin/vtourskin_design_alpha.xml" />
 	<!-- <include url="./test.xml" /> -->
-	<include name="panoScene" url="%$panoXmlPath%" />
+	<include name="xmlPath" url="%$xmlPath%" />
 	<!-- <include url="plugins/edit_hotspot.xml" /> -->
 	<!-- <action name="draghotspotSM">
 		spheretoscreen(ath, atv, hotspotcenterx, hotspotcentery, 'l'); 

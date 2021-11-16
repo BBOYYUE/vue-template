@@ -15,8 +15,9 @@
   ></div>
 </template>
 <script>
+/* eslint-disable */
 export default {
-  name: "krpano",
+  name: "Krpano",
   props: ["xmlPath", "options"],
   methods: {
     krpanoReady(krpano) {
@@ -24,6 +25,7 @@ export default {
     },
   },
   mounted() {
+    console.log(this.xmlPath)
     embedpano({
       swf: "./krpano/tour.swf",
       xml: "./krpano/tour.xml",
@@ -31,9 +33,9 @@ export default {
       html5: "auto",
       mobilescale: 1.0,
       passQueryParameters: true,
-      initvars:{xmlPath},
+      initvars: { xmlPath: this.xmlPath },
       onready: this.krpanoReady,
-      consolelog: true
+      consolelog: true,
     });
   },
 };

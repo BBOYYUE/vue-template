@@ -2,7 +2,7 @@ import state from './state';
 import getters from './getters';
 import mutations from './mutations';
 import actions from './actions';
-const mainPanorama = {
+const palaneLoction = {
     namespaced: true,
     state: state,
     getters: getters,
@@ -10,4 +10,4 @@ const mainPanorama = {
     actions:actions
 };
 
-export default mainPanorama;
+export default palaneLoction;

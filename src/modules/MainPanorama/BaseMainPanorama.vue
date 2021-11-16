@@ -11,19 +11,21 @@
     8. 缩略图的地址
 -->
 <template>
-    <krpano 
-        :xmlPath="xmlPath" 
-        :options="options" 
-        @krpanoReady="krpanoReady"
-    ><krpano>
+  <Krpano
+    :xmlPath="xmlPath"
+    :options="options"
+    @krpanoReady="krpanoReady"
+  ></Krpano>
 </template>
 <script>
-import krpano from "../../components/krpano/krpano.vue";
+import Krpano from "../../components/krpano/Krpano.vue";
 export default {
-  components: { krpano },
+  components: { Krpano },
   name: "BaseMainPanorama",
-  data: {
-    krpanoImpl: undefined,
+  data() {
+    return {
+      krpanoImpl: undefined,
+    };
   },
   computed: {
     xmlPath() {
@@ -56,7 +58,7 @@ export default {
   },
   watch: {
     krpanoImpl(val) {
-      console.log("krpanoImpl 发生了变化!");
+      console.log("krpanoImpl 发生了变化!", val);
     },
   },
 };

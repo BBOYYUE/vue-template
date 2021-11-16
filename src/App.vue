@@ -1,24 +1,41 @@
 <template>
   <div class="app">
     <div class="hearder">
-      <audio :src="bgmUrl" id="bgm" type="audio/mp3" controls loop></audio>
+      <!-- <audio :src="bgmUrl" id="bgm" type="audio/mp3" controls loop></audio> -->
     </div>
     <div class="content">
-      <keep-alive>
-        <router-view></router-view>
-      </keep-alive>
+      <router-view v-slot="{ Component }">
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </router-view>
     </div>
-    <div class="footer">
-      <menu></menu>
-    </div>
+    <div class="footer"></div>
   </div>
 </template>
 
 <script>
+import { SET_PROJECT_UDID } from "./store/MutationType";
 export default {
   name: "App",
-  components: {
-    HelloWorld,
+  components: {},
+  computed: {
+    urlUdid() {
+      return this.$route.params.udid;
+    },
+  },
+  created() {
+    // watch 路由的参数，以便再次获取数据
+  },
+  methods: {
+    setUdid(udid) {
+      this.$store.commit({ type: SET_PROJECT_UDID, udid });
+    },
+  },
+  watchs: {
+    urlUdid(udid) {
+      this.setUdid(udid);
+    },
   },
 };
 </script>
