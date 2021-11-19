@@ -11,33 +11,55 @@
   <div>
     <!-- 需要轮播的图片放进来 -->
     <TwoWayCarousel
-      :pageList="pageList"
+      :firstPageList="firstPageList"
+      :secondPageList="secondPageList"
       :activeIndex="activeIndex"
-      :slideDirection="slideDirection"
-    ></TwoWayCarousel>
+      :firstChildComponent="firstChildComponent"
+      :secondChildComponent="secondChildComponent"
+      @activeIndexChange="activeIndexChange"
+    >
+      <template v-slot:first-swiper-fixed></template>
+      <template v-slot:second-swiper-fixed></template>
+    </TwoWayCarousel>
   </div>
 </template>
 <script>
-import TwoWayCarousel from '../../components/carousel/TwoWayCarousel.vue'
+import TwoWayCarousel from "../../components/carousel/TwoWayCarousel.vue";
+import * as MutaionType from "../../store/MutationType";
 export default {
   components: { TwoWayCarousel },
   name: "BaseHouseAppreciation",
   data() {
     return {};
   },
+  methods: {
+    activeIndexChange(val) {
+      this.$store.commit({
+        type: "HouseAppreciation/" + MutaionType.SET_ACTIVE_INDEX,
+        activeIndex: val,
+      });
+    },
+  },
   computed: {
-    pageList() {
-        return this.$store.state.PlaneLoction.pageList;
+    firstPageList() {
+      return this.$store.state.HouseAppreciation.firstPageList;
+    },
+    secondPageList() {
+      return this.$store.state.HouseAppreciation.secondPageList;
+    },
+    firstChildComponent() {
+      return this.$store.state.HouseAppreciation.firstChildComponent;
+    },
+    secondChildComponent() {
+      return this.$store.state.HouseAppreciation.secondChildComponent;
     },
     activePage() {
-        return this.$store.state.PlaneLoction.activePage;
+      return {};
     },
     activeIndex() {
-        return this.$store.state.PlaneLoction.activeIndex;
+      console.log(this.$store.state.HouseAppreciation.activeIndex)
+      return this.$store.state.HouseAppreciation.activeIndex;
     },
-    slideDirection() {
-        return this.$store.state.PlaneLoction.slideDirection;
-    },
-  }
+  },
 };
 </script>

@@ -31,6 +31,7 @@ export default () => ({
             mz: 'http://192.168.10.10:9000/alpha-test/test/page-layout-disclaimer.png'
         },
     ],
+    childComponent:"BaseCard",
     activePage: {},
     activeIndex: 0,
     slideDirection: 'vertical'

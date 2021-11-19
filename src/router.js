@@ -3,6 +3,7 @@ import MainPanorama from './pages/MainPanorama';
 import PlaneLocation from './pages/PlaneLocation';
 import TestWechatOption from "./modules/Test/WechatOption";
 import HouseAppreciation from "./pages/HouseAppreciation";
+import PageManage from "./pages/PageManage";
 
 
 /**
@@ -34,10 +35,10 @@ const routes = [
         }
     },
 
-     /**
-     * 二维区位 路由
-     */
-      {
+    /**
+    * 户型鉴赏 路由
+    */
+    {
         path: "/house-appreciation/:udid(\\d+)?",
         name: "house-appreciation",
         component: HouseAppreciation,
@@ -45,7 +46,14 @@ const routes = [
             auth: isWeChat
         }
     },
-
+    {
+        path: "/page-manage/:udid(\\d+)?",
+        name: "page-manage",
+        component: PageManage,
+        meta: {
+            auth: isWeChat
+        }
+    },
     {
         path: "/test",
         name: "test",

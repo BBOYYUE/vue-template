@@ -12,7 +12,16 @@
         :key="index"
         :virtualIndex="index"
       >
-        <img :src="slideContent.houseTypeImg" />
+        <keep-alive>
+          <component
+            v-if="childComponent"
+            :is="childComponent"
+            title="123"
+            content="123"
+            text="123"
+            footer="123"
+          ></component>
+        </keep-alive>
       </swiper-slide>
     </swiper>
   </div>
@@ -20,10 +29,17 @@
 <script>
 import * as Module from "swiper";
 import { Swiper, SwiperSlide } from "swiper/vue";
+import BaseCard from "../card/BaseCard.vue";
 import "swiper/swiper-bundle.min.css";
 export default {
-  props: ["pageList", "activeIndex", "slideDirection", "modules"],
-  components: { SwiperSlide, Swiper },
+  props: [
+    "pageList",
+    "activeIndex",
+    "slideDirection",
+    "modules",
+    "childComponent",
+  ],
+  components: { SwiperSlide, Swiper, BaseCard },
   name: "Carousel",
   data() {
     return {
@@ -32,20 +48,20 @@ export default {
   },
   created() {},
   computed: {
-    options(){
+    options() {
       let options = [];
-      for(let item in this.modules){
-        options.push(Module[this.modules[item]])
+      for (let item in this.modules) {
+        options.push(Module[this.modules[item]]);
       }
       return options;
-    }
+    },
   },
   methods: {
     onSwiper(swiper) {
-      console.log(swiper);
+      this.swiper = swiper;
     },
     onSlideChange() {
-      console.log("slide change");
+      this.$emit("activeIndexChange", this.swiper.activeIndex);
     },
     onReachEnd() {
       console.log("reachEnd");

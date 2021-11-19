@@ -7,6 +7,7 @@
     @reachEnd="onMainReachEnd"
   >
     <swiper-slide>
+      <slot name="first-swiper-fixed"></slot>
       <swiper
         :modules="options"
         @swiper="onFirstSwiper"
@@ -14,19 +15,48 @@
         @reachEnd="onFirstReachEnd"
         :controller="{ control: secondSwiper }"
       >
-        <swiper-slide>1-1</swiper-slide>
-        <swiper-slide>1-2</swiper-slide>
+        <swiper-slide
+          v-for="(slideContent, index) in firstPageList"
+          :key="index"
+          :virtualIndex="index"
+        >
+          <keep-alive>
+            <component
+              v-if="firstChildComponent"
+              :is="firstChildComponent"
+              title="123"
+              content="123"
+              text="123"
+              footer="123"
+            ></component>
+          </keep-alive>
+        </swiper-slide>
       </swiper>
     </swiper-slide>
     <swiper-slide>
+      <slot name="second-swiper-fixed"></slot>
       <swiper
         :modules="options"
         @swiper="onSecondSwiper"
         @slideChange="onSecondSlideChange"
         @reachEnd="onSecondReachEnd"
       >
-        <swiper-slide>2-1</swiper-slide>
-        <swiper-slide>2-2</swiper-slide>
+        <swiper-slide
+          v-for="(slideContent, index) in secondPageList"
+          :key="index"
+          :virtualIndex="index"
+        >
+          <keep-alive>
+            <component
+              v-if="secondChildComponent"
+              :is="secondChildComponent"
+              title="321"
+              content="321"
+              text="321"
+              footer="321"
+            ></component>
+          </keep-alive>
+        </swiper-slide>
       </swiper>
     </swiper-slide>
   </swiper>
@@ -34,11 +64,19 @@
 <script>
 import { Controller } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/vue";
+import BaseCard from "../card/BaseCard.vue";
 import "swiper/swiper-bundle.min.css";
 export default {
-  props: ["pageList", "activeIndex", "slideDirection", "modules"],
+  props: [
+    "firstPageList",
+    "secondPageList",
+    "activeIndex",
+    "modules",
+    "firstChildComponent",
+    "secondChildComponent",
+  ],
   name: "TwoWayCarousel",
-  components: { SwiperSlide, Swiper },
+  components: { SwiperSlide, Swiper, BaseCard },
   data() {
     return {
       swiper: {},
@@ -57,32 +95,24 @@ export default {
     onMainSwiper(swiper) {
       console.log(swiper, "main");
     },
-    onMainSlideChange() {
-      console.log("slide change");
-    },
-    onMainReachEnd() {
-      console.log("reachEnd");
-    },
+    onMainSlideChange() {},
+    onMainReachEnd() {},
     onFirstSwiper(swiper) {
-      console.log(swiper, "first");
       this.firstSwiper = swiper;
     },
     onFirstSlideChange() {
+      this.$emit("activeIndexChange", this.firstSwiper.activeIndex);
       this.secondSwiper.slideTo(this.firstSwiper.activeIndex, 0);
     },
-    onFirstReachEnd() {
-      console.log("reachEnd");
-    },
+    onFirstReachEnd() {},
     onSecondSwiper(swiper) {
-      console.log(swiper, "second");
       this.secondSwiper = swiper;
     },
     onSecondSlideChange() {
+      this.$emit("activeIndexChange", this.secondSwiper.activeIndex);
       this.firstSwiper.slideTo(this.secondSwiper.activeIndex, 0);
     },
-    onSecondReachEnd() {
-      console.log("reachEnd");
-    },
+    onSecondReachEnd() {},
   },
 };
 </script>

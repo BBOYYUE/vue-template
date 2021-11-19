@@ -14,30 +14,45 @@
       :pageList="pageList"
       :activeIndex="activeIndex"
       :slideDirection="slideDirection"
+      :childComponent="childComponent"
+      @activeIndexChange="activeIndexChange"
     ></Carousel>
   </div>
 </template>
 <script>
-import Carousel from '../../components/carousel/Carousel.vue'
+import Carousel from "../../components/carousel/Carousel.vue";
+import * as MutaionType from "../../store/MutationType";
 export default {
   components: { Carousel },
   name: "BaseLocation",
   data() {
     return {};
   },
+  methods: {
+    activeIndexChange(val) {
+      this.$store.commit({
+        type: "PlaneLocaion/" + MutaionType.SET_ACTIVE_INDEX,
+        activeIndex: val,
+      });
+    },
+  },
   computed: {
     pageList() {
-        return this.$store.state.PlaneLoction.pageList;
+      return this.$store.state.PlaneLoction.pageList;
     },
     activePage() {
-        return this.$store.state.PlaneLoction.activePage;
+      return {};
     },
     activeIndex() {
-        return this.$store.state.PlaneLoction.activeIndex;
+      console.log(this.$store.state.PlaneLoction.activeIndex)
+      return this.$store.state.PlaneLoction.activeIndex;
     },
     slideDirection() {
-        return this.$store.state.PlaneLoction.slideDirection;
+      return this.$store.state.PlaneLoction.slideDirection;
     },
-  }
+    childComponent(){
+      return this.$store.state.PlaneLoction.childComponent;
+    }
+  },
 };
 </script>
